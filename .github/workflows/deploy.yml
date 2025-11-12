@@ -37,7 +37,8 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/full-stack_to-do_app_with_crud-server:latest
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/docker-capstone-project-server:latest
             docker stop todo-app || true
             docker rm todo-app || true
-            docker run -d -p 3000:5173 --name todo-app ${{ secrets.DOCKERHUB_USERNAME }}/full-stack_to-do_app_with_crud-server:latest
+            docker image prune -f
+            docker run -d -p 3000:5173 --name todo-app ${{ secrets.DOCKERHUB_USERNAME }}/docker-capstone-project-server:latest
