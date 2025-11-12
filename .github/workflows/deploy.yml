@@ -26,7 +26,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./src
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/full-stack_to-do_app_with_crud-server:latest
 
@@ -40,4 +40,4 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/full-stack_to-do_app_with_crud-server:latest
             docker stop todo-app || true
             docker rm todo-app || true
-            docker run -d -p 5173:5173 --name todo-app ${{ secrets.DOCKERHUB_USERNAME }}/full-stack_to-do_app_with_crud-server:latest
+            docker run -d -p 3000:5173 --name todo-app ${{ secrets.DOCKERHUB_USERNAME }}/full-stack_to-do_app_with_crud-server:latest
